@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@fortawesome/fontawesome-free/css/all.css";
 import "./globals.css";
+
+import LeftBar from "./components/layouts/LeftBar";
+import TopBar from "./components/layouts/TopBar";
+import LayoutFooter from "./components/layouts/Footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +22,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="flex h-screen">
+          <LeftBar />
+          <div className='grow flex flex-col h-screen'>
+            <TopBar />
+            <div className='grow overflow-y-scroll bg-white'>
+              {children}
+            </div>
+            <LayoutFooter />
+          </div>
+        </main>  
+      </body>
     </html>
   );
 }
